@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                background-color:black;
+            }
+            .containerinput{
+                background-color: white;
+                text-align: center;
+                margin-top: 139px;
+                margin-left: 472px;
+                padding-top: 30px;
+                padding-bottom: 270px;
+                width: 400px;
+                height: 74px;
+            }
+            .containerinput{
+                display: flex;
+                flex-direction: column;
+            }
+            .inp{
+                margin-bottom: 100px;
+                margin-left: 50px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                text-align: center;
+                width: 300px;
+            }
+            .but{
+                background-color: green;
+                border: 2px solid;
+                border-style: none;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-right: 20px;
+                padding-left: 20px;
+                margin-left: 131px;
+                border-radius: 18px;
+                cursor: pointer;
+                color:white;
+            }
+            .but:hover{
+                transition: 0.6s;
+                opacity: 0.8;
+            }
+            .qr_btn{
+                margin-left: -144px;
+                margin-top: -14px;
+            }
+            .img{
+                height: 124px;
+                width: 123px;
+                margin-left: 139px;
+                margin-top: 6px;
+            }
+            .val_text{
+                color: rgb(250, 14, 14);
+            }
+            .inva{
+                margin-top: -79px;
+            }
+        </style>
+        <title>QR Code Generator</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="containerinput">
+                <h1>ENTER HERE</h1>
+                <input  class="inp"  placeholder="Enter phone number" type="text">
+                <div class="inva">
+                    <p class="val_text"></p>
+                </div>
+                <div class="qr_btn">
+                    <button class="but">GenerateQRCode</button>
+                </div>
+                <img class="img" src="" alt="">
+            </div>
+        </div>
+        <script>
+            let n1=document.querySelector('.but');
+            let n2=document.querySelector('.img');
+            let n3=document.querySelector('.inp');
+            let n4=document.querySelector('.val_text');
+            n1.onclick=function()
+            {
+                if(n3.value.trim().length === 0){
+
+                    n4.innerHTML=`Fill The Box...`;
+                    n2.src="";
+                }
+                else if(n3.value.trim().length!==10 )
+                {
+                    n4.innerHTML='Number Should Be 10 Digits...';
+                    n2.src="";
+                }
+                else{
+                    n1.innerText='GeneratingQRCode....';
+                    n2.src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${n3.value.trim()}`;
+                    n2.onload = function()
+                    {
+                        n1.innerText='GenerateQRCode';
+                    }
+                    n4.innerHTML='';
+                }
+            }
+        </script>
+    </body>
+</html>
